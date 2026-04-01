@@ -50,6 +50,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/questions/*/answers").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/search").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/best-practices/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/articles/**").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
                 // 需要认证的接口
                 .requestMatchers("/api/**").authenticated()

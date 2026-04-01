@@ -6,6 +6,12 @@ import RegisterPage from './pages/Register';
 import JobZone from './pages/JobZone';
 import CreateQuestion from './pages/Question/Create';
 import QuestionDetail from './pages/Question/Detail';
+import BestPracticesPage from './pages/BestPractice';
+import BestPracticeDetailPage from './pages/BestPractice/Detail';
+import CreateBestPractice from './pages/BestPractice/Create';
+import KnowledgePage from './pages/Knowledge';
+import ArticleDetailPage from './pages/Knowledge/Detail';
+import CreateArticle from './pages/Knowledge/Create';
 import ProfilePage from './pages/User/Profile';
 import UserHomePage from './pages/User/UserHome';
 import TagsPage from './pages/Tags';
@@ -57,6 +63,12 @@ function App() {
           <Route path="/qa" element={<JobZone jobRole="qa" />} />
           <Route path="/question/create" element={<PrivateRoute><CreateQuestion /></PrivateRoute>} />
           <Route path="/question/:id" element={<QuestionDetail />} />
+          <Route path="/practices" element={<BestPracticesPage />} />
+          <Route path="/practice/create" element={<PrivateRoute><CreateBestPractice /></PrivateRoute>} />
+          <Route path="/practice/:id" element={<BestPracticeDetailPage />} />
+          <Route path="/knowledge" element={<KnowledgePage />} />
+          <Route path="/article/create" element={<PrivateRoute><CreateArticle /></PrivateRoute>} />
+          <Route path="/article/:id" element={<ArticleDetailPage />} />
           <Route path="/user/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
           <Route path="/user/:id" element={<UserHomePage />} />
           <Route path="/tags" element={<TagsPage />} />

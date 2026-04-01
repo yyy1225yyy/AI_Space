@@ -166,3 +166,49 @@ export interface LoginResponse {
   level: number;
   points: number;
 }
+
+// 实践分类
+export type PracticeCategory = 'implementation' | 'optimization' | 'architecture' | 'tool' | 'workflow';
+
+// 最佳实践
+export interface BestPractice {
+  id: number;
+  userId: number;
+  title: string;
+  content: string;
+  description: string;
+  jobRole: JobRole;
+  category: PracticeCategory;
+  categoryName: string;
+  viewCount: number;
+  voteCount: number;
+  commentCount: number;
+  isFeatured: boolean;
+  createdAt: string;
+  updatedAt: string;
+  user: User;
+}
+
+// 文章分类
+export type ArticleCategory = 'tutorial' | 'guide' | 'case-study' | 'research' | 'news';
+
+// 知识文章
+export interface Article {
+  id: number;
+  userId: number;
+  title: string;
+  content: string;
+  summary: string;
+  coverImage: string;
+  jobRole: JobRole;
+  category: ArticleCategory;
+  categoryName: string;
+  readTime: number;
+  viewCount: number;
+  voteCount: number;
+  commentCount: number;
+  isFeatured: boolean;
+  createdAt: string;
+  updatedAt: string;
+  user: User;
+}

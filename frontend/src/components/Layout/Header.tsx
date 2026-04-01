@@ -7,7 +7,9 @@ import { JOB_ROLES } from '../../constants';
 import type { JobRole } from '../../types';
 
 const navTabs = [
-  { path: '/', label: '广场首页', icon: '🏠' },
+  { path: '/', label: '问题广场', icon: '🏠' },
+  { path: '/practices', label: '最佳实践', icon: '💡' },
+  { path: '/knowledge', label: '知识广场', icon: '📖' },
   { path: '/rd', label: '研发专区', icon: JOB_ROLES.rd.icon },
   { path: '/pm-ops', label: '产品运营专区', icon: JOB_ROLES.pm_ops.icon },
   { path: '/qa', label: '测试专区', icon: JOB_ROLES.qa.icon },

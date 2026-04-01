@@ -61,3 +61,23 @@ export const API_BASE_URL = '/api';
 
 // 每页条数
 export const PAGE_SIZE = 20;
+
+// 实践分类
+export const PRACTICE_CATEGORIES = [
+  { key: 'all', name: '全部', icon: '📋' },
+  { key: 'implementation', name: '实施方案', icon: '🛠️' },
+  { key: 'optimization', name: '优化改进', icon: '⚡' },
+  { key: 'architecture', name: '架构设计', icon: '🏗️' },
+  { key: 'tool', name: '工具使用', icon: '🔧' },
+  { key: 'workflow', name: '工作流程', icon: '🔄' },
+];
+
+// 文章分类
+export const ARTICLE_CATEGORIES = [
+  { key: 'all', name: '全部', icon: '📋' },
+  { key: 'tutorial', name: '教程', icon: '📚' },
+  { key: 'guide', name: '指南', icon: '🗺️' },
+  { key: 'case-study', name: '案例分析', icon: '💼' },
+  { key: 'research', name: '研究', icon: '🔬' },
+  { key: 'news', name: '资讯', icon: '📰' },
+];

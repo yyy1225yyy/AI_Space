@@ -1,0 +1,71 @@
+.register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e6f0ff 0%, #f0f5ff 50%, #f7f8fa 100%);
+  padding: 24px;
+}
+
+.register-container {
+  width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.register-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.register-logo .logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1890ff, #096dd9);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.register-logo .logo-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.register-subtitle {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  margin: 0;
+}
+
+.register-form {
+  margin-top: 16px;
+}
+
+.register-footer {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.register-footer a {
+  color: var(--accent);
+}

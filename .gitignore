@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+
+# Build output
+frontend/dist/
+backend/target/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+debug.log
+
+# Maven local installation
+backend/maven/
+backend/maven.zip
+.mvn/wrapper/maven-wrapper.jar
+
+# Uploads
+uploads/
+
+# Test data
+backend/test-*.json
+
+# Temp files
+*.tmp
+*.swp
+*~
+
+# Figma design references (local only)
+figama_design/
+
+# Claude Code
+.claude/

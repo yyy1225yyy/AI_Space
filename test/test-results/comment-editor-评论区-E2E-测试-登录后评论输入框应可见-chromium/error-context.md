@@ -1,0 +1,56 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - link "AI AI广场" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e9]: AI
+        - generic [ref=e10]: AI广场
+      - generic [ref=e12]:
+        - img [ref=e13]
+        - searchbox "搜索问题、标签..." [ref=e16]
+      - generic [ref=e17]:
+        - link "排行榜" [ref=e18] [cursor=pointer]:
+          - /url: /ranking
+          - button "排行榜" [ref=e19]:
+            - img
+            - text: 排行榜
+        - link "标签" [ref=e20] [cursor=pointer]:
+          - /url: /tags
+          - button "标签" [ref=e21]:
+            - img
+            - text: 标签
+        - link "张三 AI技术专家 3200 积分" [ref=e22] [cursor=pointer]:
+          - /url: /user/1
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - generic [ref=e25]: 张三
+              - generic [ref=e26]:
+                - generic [ref=e27]: AI技术专家
+                - generic [ref=e28]: 3200 积分
+            - img [ref=e30]
+  - navigation [ref=e31]:
+    - generic [ref=e33]:
+      - link "广场首页" [ref=e34] [cursor=pointer]:
+        - /url: /
+        - img [ref=e35]
+        - generic [ref=e38]: 广场首页
+      - link "💻 研发专区" [ref=e39] [cursor=pointer]:
+        - /url: /rd
+        - generic [ref=e40]: 💻
+        - generic [ref=e41]: 研发专区
+      - link "📊 产品运营专区" [ref=e42] [cursor=pointer]:
+        - /url: /pm-ops
+        - generic [ref=e43]: 📊
+        - generic [ref=e44]: 产品运营专区
+      - link "🔍 测试专区" [ref=e45] [cursor=pointer]:
+        - /url: /qa
+        - generic [ref=e46]: 🔍
+        - generic [ref=e47]: 测试专区
+  - main [ref=e48]:
+    - paragraph [ref=e50]: 问题不存在
+  - contentinfo [ref=e51]:
+    - paragraph [ref=e54]: © 2026 AI广场 - ERP行业AI知识分享社区
+```

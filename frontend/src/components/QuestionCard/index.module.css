@@ -1,0 +1,119 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import type { Question } from '../../types';
+import { QUESTION_STATUS_MAP, JOB_ROLES, QUESTION_LEVELS } from '../../constants';
+import { formatDate, formatNumber, getQuestionLevelInfo } from '../../utils/helpers';
+
+interface Props {
+  question: Question;
+}
+
+const QuestionCard: React.FC<Props> = ({ question }) => {
+  const navigate = useNavigate();
+  const statusInfo = QUESTION_STATUS_MAP[question.status as keyof typeof QUESTION_STATUS_MAP];
+  const levelInfo = getQuestionLevelInfo(question.level);
+  const jobRoleInfo = JOB_ROLES[question.jobRole as keyof typeof JOB_ROLES] || JOB_ROLES.rd;
+
+  const statusColors: Record<string, string> = {
+    open: 'var(--accent)',
+    answered: 'var(--green)',
+    solved: 'var(--green)',
+    closed: 'var(--text-tertiary)',
+  };
+
+  const levelColors: Record<string, string> = {
+    easy: 'var(--green)',
+    medium: 'var(--accent)',
+    hard: 'var(--orange)',
+    expert: 'var(--red)',
+  };
+
+  return (
+    <div
+      className="card card-hover animate-fade-up"
+      onClick={() => navigate(`/question/${question.id}`)}
+      style={{
+        display: 'flex',
+        cursor: 'pointer',
+        marginBottom: 10,
+        padding: '18px 20px',
+      }}
+    >
+      {/* Vote/Answer counts */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, minWidth: 64, paddingRight: 18, borderRight: '1px solid var(--border)', marginRight: 18 }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
+            {question.voteCount || 0}
+          </div>
+          <div style={{ fontSize: 10, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>投票</div>
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <div
+            style={{
+              fontSize: 18,
+              fontWeight: 700,
+              fontFamily: 'var(--font-mono)',
+              color: question.status === 'solved' ? 'var(--green)' : 'var(--text-secondary)',
+            }}
+          >
+            {question.answerCount || 0}
+          </div>
+          <div style={{ fontSize: 10, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>回答</div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        {/* Title row */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-primary)', margin: 0, lineHeight: 1.4 }}>
+            {question.title}
+          </h3>
+          {statusInfo && (
+            <span className="tag" style={{ background: `${statusColors[question.status] || 'var(--text-tertiary)'}15`, color: statusColors[question.status], border: `1px solid ${statusColors[question.status]}30`, fontSize: 10 }}>
+              {statusInfo.name}
+            </span>
+          )}
+          {question.bountyPoints > 0 && (
+            <span className="tag tag-orange" style={{ fontSize: 10 }}>
+              悬赏 {question.bountyPoints}pts
+            </span>
+          )}
+        </div>
+
+        {/* Meta row */}
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
+          <span className="tag tag-cyan" style={{ fontSize: 10 }}>
+            {jobRoleInfo.icon} {jobRoleInfo.name}
+          </span>
+          {levelInfo && (
+            <span style={{ fontSize: 11, fontWeight: 600, color: levelColors[question.level] || 'var(--text-secondary)' }}>
+              {levelInfo.name}
+            </span>
+          )}
+          {question.tags?.map((tag) => (
+            <span key={tag.id} className="tag tag-muted" style={{ fontSize: 10 }}>
+              {tag.name}
+            </span>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div className="avatar" style={{ width: 20, height: 20, fontSize: 10, background: 'var(--accent-glow)', color: 'var(--accent)' }}>
+              {question.user?.username?.charAt(0)?.toUpperCase()}
+            </div>
+            <span style={{ fontSize: 12, color: 'var(--text-secondary)', fontWeight: 500 }}>{question.user?.username}</span>
+            <span style={{ fontSize: 11, color: 'var(--text-tertiary)' }}>{formatDate(question.createdAt)}</span>
+          </div>
+          <span style={{ fontSize: 11, color: 'var(--text-tertiary)', fontFamily: 'var(--font-mono)' }}>
+            {formatNumber(question.viewCount || 0)} views
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default QuestionCard;

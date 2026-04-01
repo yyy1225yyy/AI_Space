@@ -1,0 +1,10 @@
+.app-layout {
+  min-height: 100vh;
+}
+
+.app-content {
+  padding: 24px;
+  background: var(--bg-base);
+  min-height: calc(100vh - 60px);
+  overflow-y: auto;
+}

@@ -1,0 +1,48 @@
+.create-question-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.create-question-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.create-question-card h2 {
+  font-size: 20px;
+  margin: 0 0 24px 0;
+}
+
+.create-form {
+  max-width: 700px;
+}
+
+.tag-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  min-height: 40px;
+}
+
+.selectable-tag {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.selectable-tag.selected {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.tag-hint {
+  color: var(--text-tertiary);
+  font-size: 13px;
+  line-height: 28px;
+}

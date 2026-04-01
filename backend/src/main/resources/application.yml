@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-square
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/ai_square?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: xk_user
+    password: XK2025917
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+
+# JWT配置
+jwt:
+  secret: ai-square-jwt-secret-key-2026-erp-knowledge-community-must-be-at-least-256-bits-long
+  expiration: 86400000  # 24小时(毫秒)
+
+# 文件上传配置
+file:
+  upload:
+    path: ./uploads/
+    max-size: 10MB

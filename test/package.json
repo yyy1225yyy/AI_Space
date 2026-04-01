@@ -1,0 +1,34 @@
+{
+  "name": "ai-space-test",
+  "version": "1.0.0",
+  "description": "AI广场 测试套件 - API接口测试 + E2E浏览器测试 + 前端组件测试",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:api": "vitest run --config vitest.config.api.ts",
+    "test:api:watch": "vitest --config vitest.config.api.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:frontend": "vitest run --config vitest.config.frontend.ts",
+    "test:frontend:watch": "vitest --config vitest.config.frontend.ts",
+    "test:all": "npm run test:api && npm run test:frontend && npm run test:e2e",
+    "install:playwright": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^22.10.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "axios": "^1.7.9",
+    "jsdom": "^25.0.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.2",
+    "typescript": "^5.9.0",
+    "vitest": "^3.0.0",
+    "zustand": "^5.0.12"
+  }
+}

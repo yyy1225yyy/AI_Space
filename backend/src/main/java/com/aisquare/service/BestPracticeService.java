@@ -8,6 +8,8 @@ import com.aisquare.entity.JobRole;
 import com.aisquare.entity.enums.PracticeCategory;
 import com.aisquare.repository.BestPracticeRepository;
 import com.aisquare.repository.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class BestPracticeService {
     private final BestPracticeRepository bestPracticeRepository;
     private final UserRepository userRepository;
     private final UserService userService;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public BestPracticeService(BestPracticeRepository bestPracticeRepository,
                                UserRepository userRepository,
@@ -37,11 +41,13 @@ public class BestPracticeService {
         return practices.map(this::toDTO);
     }
 
+    @Transactional
     public BestPracticeDTO getById(Long id) {
         BestPractice practice = bestPracticeRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("实践案例不存在"));
         bestPracticeRepository.incrementViewCount(id);
-        practice.setViewCount((practice.getViewCount() != null ? practice.getViewCount() : 0) + 1);
+        entityManager.flush();
+        entityManager.refresh(practice);
         return toDTO(practice);
     }
 

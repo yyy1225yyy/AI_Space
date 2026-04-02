@@ -4,7 +4,6 @@ import request from '../../utils/request';
 import { JOB_ROLES, PRACTICE_CATEGORIES } from '../../constants';
 import { formatDate } from '../../utils/helpers';
 import type { BestPractice, Comment, ApiResponse } from '../../types';
-import ReactMarkdown from 'react-markdown';
 
 const BestPracticeDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -99,10 +98,8 @@ const BestPracticeDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* Content (Markdown) */}
-        <div className="markdown-body" style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-primary)' }}>
-          <ReactMarkdown>{practice.content}</ReactMarkdown>
-        </div>
+        {/* Content (HTML from RichEditor) */}
+        <div className="tiptap" style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-primary)' }} dangerouslySetInnerHTML={{ __html: practice.content }} />
 
         {/* Actions */}
         <div style={{ display: 'flex', gap: 12, marginTop: 28, paddingTop: 20, borderTop: '1px solid var(--border)' }}>

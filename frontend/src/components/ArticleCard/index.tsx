@@ -14,7 +14,7 @@ const ArticleCard: React.FC<Props> = ({ article, variant = 'default' }) => {
   const jobRoleInfo = JOB_ROLES[article.jobRole as keyof typeof JOB_ROLES];
   const categoryInfo = ARTICLE_CATEGORIES.find((c) => c.key === article.category);
 
-  // 精选卡片样式（带封面图）
+  // 精选卡片样式（带封面图大卡片）
   if (variant === 'featured' && article.coverImage) {
     return (
       <div
@@ -65,25 +65,35 @@ const ArticleCard: React.FC<Props> = ({ article, variant = 'default' }) => {
     );
   }
 
-  // 默认列表卡片
+  // 默认列表卡片（带封面图缩略图）
   return (
     <div
       className="card card-hover animate-fade-up"
       onClick={() => navigate(`/article/${article.id}`)}
       style={{ display: 'flex', cursor: 'pointer', padding: '20px 24px', gap: 16 }}
     >
-      {/* User Avatar */}
-      <div
-        className="avatar"
-        onClick={(e) => { e.stopPropagation(); navigate(`/user/${article.user?.id}`); }}
-        style={{
-          width: 48, height: 48, fontSize: 18,
-          background: 'var(--accent-glow)', color: 'var(--accent)',
-          cursor: 'pointer', flexShrink: 0,
-        }}
-      >
-        {article.user?.username?.charAt(0)?.toUpperCase()}
-      </div>
+      {/* 封面图 */}
+      {article.coverImage ? (
+        <div style={{ width: 140, height: 100, borderRadius: 'var(--radius-md)', overflow: 'hidden', flexShrink: 0 }}>
+          <img
+            src={article.coverImage}
+            alt=""
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      ) : (
+        <div
+          className="avatar"
+          onClick={(e) => { e.stopPropagation(); navigate(`/user/${article.user?.id}`); }}
+          style={{
+            width: 48, height: 48, fontSize: 18,
+            background: 'var(--accent-glow)', color: 'var(--accent)',
+            cursor: 'pointer', flexShrink: 0,
+          }}
+        >
+          {article.user?.username?.charAt(0)?.toUpperCase()}
+        </div>
+      )}
 
       {/* Content */}
       <div style={{ flex: 1, minWidth: 0 }}>

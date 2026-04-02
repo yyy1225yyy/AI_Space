@@ -8,6 +8,8 @@ import com.aisquare.entity.JobRole;
 import com.aisquare.entity.enums.ArticleCategory;
 import com.aisquare.repository.ArticleRepository;
 import com.aisquare.repository.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
     private final UserService userService;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public ArticleService(ArticleRepository articleRepository,
                           UserRepository userRepository,
@@ -45,11 +49,13 @@ public class ArticleService {
                 .stream().map(this::toDTO).collect(Collectors.toList());
     }
 
+    @Transactional
     public ArticleDTO getById(Long id) {
         Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("文章不存在"));
         articleRepository.incrementViewCount(id);
-        article.setViewCount((article.getViewCount() != null ? article.getViewCount() : 0) + 1);
+        entityManager.flush();
+        entityManager.refresh(article);
         return toDTO(article);
     }
 

@@ -4,7 +4,6 @@ import request from '../../utils/request';
 import { JOB_ROLES, ARTICLE_CATEGORIES } from '../../constants';
 import { formatDate } from '../../utils/helpers';
 import type { Article, Comment, ApiResponse } from '../../types';
-import ReactMarkdown from 'react-markdown';
 
 const ArticleDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -108,10 +107,8 @@ const ArticleDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Content (Markdown) */}
-          <div className="markdown-body" style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-primary)' }}>
-            <ReactMarkdown>{article.content}</ReactMarkdown>
-          </div>
+          {/* Content (HTML from RichEditor) */}
+          <div className="tiptap" style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-primary)' }} dangerouslySetInnerHTML={{ __html: article.content }} />
 
           {/* Actions */}
           <div style={{ display: 'flex', gap: 12, marginTop: 28, paddingTop: 20, borderTop: '1px solid var(--border)' }}>

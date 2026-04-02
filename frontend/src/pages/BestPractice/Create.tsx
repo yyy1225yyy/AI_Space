@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MDEditor from '@uiw/react-md-editor';
+import RichEditor from '../../components/RichEditor';
 import request from '../../utils/request';
 import { JOB_ROLES, PRACTICE_CATEGORIES } from '../../constants';
 import { useUserStore } from '../../stores/userStore';
+import { toast } from '../../utils/toast';
 import type { JobRole } from '../../types';
 
 const CreateBestPractice: React.FC = () => {
@@ -17,12 +18,14 @@ const CreateBestPractice: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
-    if (!title.trim() || !content.trim()) return;
+    if (!title.trim()) { toast.error('请输入标题'); return; }
+    if (!content.trim() || content === '<p></p>') { toast.error('请输入详细内容'); return; }
     setSubmitting(true);
     try {
       await request.post('/best-practices', { title, description, content, jobRole, category });
+      toast.success('发布成功');
       navigate('/practices');
-    } catch { /* */ } finally { setSubmitting(false); }
+    } catch { toast.error('发布失败'); } finally { setSubmitting(false); }
   };
 
   return (
@@ -62,9 +65,12 @@ const CreateBestPractice: React.FC = () => {
 
         <div style={{ marginBottom: 20 }}>
           <label style={{ display: 'block', fontSize: 14, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 6 }}>详细内容 *</label>
-          <div data-color-mode="light">
-            <MDEditor value={content} onChange={(v) => setContent(v || '')} height={400} />
-          </div>
+          <RichEditor
+            content={content}
+            onChange={(val) => setContent(val)}
+            placeholder="请详细描述实践方案，支持富文本格式..."
+            height={400}
+          />
         </div>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
